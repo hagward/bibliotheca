@@ -2,40 +2,40 @@ body {
 	font-family: "Georgia", "Segoe UI", sans-serif;
 	line-height: 1.5em;
 }
-a {
-	color: #E01B5D;
-}
-input {
-	width: 20%;
-}
-table {
-	width: 100%;
-	/*text-align: left;*/
-}
-tr:nth-child(even) {
-	background-color: #CCC;
-}
+
+a { color: #E01B5D; }
+input { width: 20%; }
+table { width: 100%; }
+tr:nth-child(even) { background-color: #CCC; }
+
 td {
 	margin: 1px;
-	/*background-color: #CCC;*/
 	padding: 0 8px;
 }
-td:last-child {
-	text-align: center;
-}
+
+td:last-child { text-align: center; }
+
 #header {
 	margin-top: 20px;
 	text-align: center;
 	font-size: 2em;
 }
+
 #search {
 	margin-top: 20px;
 	text-align: center;
 }
+
 #books, #addBook {
 	width: 50%;
 	margin: 20px auto;
 }
+
+#noBooks {
+	font-style: italic;
+	text-align: center;
+}
+
 #addBook {
 	margin-top: 10px;
 	text-align: center;

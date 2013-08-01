@@ -1,0 +1,11 @@
+{
+	"name": "Bibliotheca",
+	"version": "0.0.1",
+	"description": "A web-based library built on AngularJS and Node.js.",
+	"private": true,
+	"dependencies": {
+		"express": "3.x",
+		"connect": "*",
+		"mongoose": "*"
+	}
+}
