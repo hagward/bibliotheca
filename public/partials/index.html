@@ -3,14 +3,22 @@
 	<div id="noBooks" data-ng-hide="books.length > 0">Inga böcker funna</div>
 	<table data-ng-hide="books.length == 0">
 		<tr>
-			<th><a href="#" data-ng-click="setOrderBy(0)">Titel</a></th>
-			<th><a href="#" data-ng-click="setOrderBy(1)">Författare</a></th>
-			<th><a href="#" data-ng-click="setOrderBy(2)">Inköpsdatum</a></th>
+			<th><a href="#">Författare</a></th>
+			<th><a href="#">Titel</a></th>
+			<th><a href="#">Bokserie</a></th>
+			<th><a href="#">Genre</a></th>
+			<th><a href="#">Bandtyp</a></th>
+			<th><a href="#">Läst?</a></th>
+			<th><a href="#">Inköpsdatum</a></th>
 		</tr>
-		<tr data-ng-repeat="book in books | filter:searchQuery | orderBy:getOrderBy()">
-			<td><a href="book/{{ book._id }}">{{ book.title }}</a></td>
+		<tr data-ng-repeat="book in books | filter:searchQuery">
 			<td>{{ book.author }}</td>
-			<td>{{ book.acqDate }}</td>
+			<td><a href="book/{{ book._id }}">{{ book.title }}</a></td>
+			<td>{{ book.series }}</td>
+			<td>{{ book.genre }}</td>
+			<td>{{ book.type }}</td>
+			<td>{{ book.read && "Ja" || "Nej" }}</td>
+			<td>{{ book.acquire_date | date:'yyyy-MM-dd' }}</td>
 		</tr>
 	</table>
 </div>

@@ -3,22 +3,26 @@ var express = require('express'),
 
 var port = 20489;
 
-mongoose.connect('mongodb://localhost/bib');
+mongoose.connect('mongodb://localhost/devdb');
 
 var app = express();
 var db = mongoose.connection;
 
 var bookSchema = mongoose.Schema({
-	title: String,
 	author: String,
-	acqDate: {type: Date, default: Date.now}
+	title: String,
+	series: String,
+	genre: String,
+	type: String,
+	read: Boolean,
+	acquire_date: String
 });
-var Book = mongoose.model('Book', bookSchema);
+var Book = mongoose.model('Book', bookSchema, 'bibliotheca');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function() {
-	app.use(express.logger());
+	// app.use(express.logger());
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
 	app.use(express.static(__dirname + '/public'));
@@ -30,16 +34,20 @@ db.once('open', function() {
 	// Returns all the books.
 	app.get('/api/books', function(req, res) {
 		Book.find(function(err, books) {
-			if (err) console.error(err);
-			res.json({ books: books });
+			if (err)
+				console.error(err);
+			else
+				res.json({ books: books });
 		});
 	});
 
 	// Returns a specific book.
 	app.get('/api/book/:id', function(req, res) {
 		Book.findById(req.params.id, function(err, book) {
-			if (err) console.error(err);
-			res.json(book);
+			if (err)
+				res.json(false);
+			else
+				res.json(book);
 		});
 	});
 
