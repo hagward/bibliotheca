@@ -1,5 +1,5 @@
 <div id="search"><input type="search" data-ng-model="searchQuery" placeholder="Sök"></div>
-<div id="books">
+<div id="books" data-ng-click="editing = false">
 	<div id="noBooks" data-ng-show="books.length == 0">Inga böcker funna</div>
 	<table data-ng-hide="books.length == 0">
 		<tr>
@@ -11,14 +11,35 @@
 			<th><a href="#">Läst?</a></th>
 			<th><a href="#">Inköpsdatum</a></th>
 		</tr>
-		<tr data-ng-repeat="book in books | filter:searchQuery">
-			<td>{{ book.author_fname }} {{ book.author_lname }}</td>
-			<td><a href="book/{{ book._id }}">{{ book.title }}</a></td>
-			<td>{{ book.series }}</td>
-			<td>{{ book.genre }}</td>
-			<td>{{ book.type }}</td>
-			<td>{{ book.read && "Ja" || "Nej" }}</td>
-			<td>{{ book.acquire_date | date:'MMM -yy' }}</td>
+		<tr data-ng-repeat="book in books | filter:searchQuery" data-ng-dblClick="editing = !editing" data-ng-class="editing && 'editRow' || 'bookRow'">
+			<td>
+				<span data-ng-hide="editing">{{ book.author_fname }} {{ book.author_lname }}</span>
+				<input type="text" value="{{ book.author_fname }} {{ book.author_lname }}" data-ng-show="editing">
+			</td>
+			<td>
+				<span data-ng-hide="editing">{{ book.title }}</span>
+				<input type="text" value="{{ book.title }}" data-ng-show="editing">
+			</td>
+			<td>
+				<span data-ng-hide="editing">{{ book.series }}</span>
+				<input type="text" value="{{ book.series }}" data-ng-show="editing">
+			</td>
+			<td>
+				<span data-ng-hide="editing">{{ book.genre }}</span>
+				<input type="text" value="{{ book.genre }}" data-ng-show="editing">
+			</td>
+			<td>
+				<span data-ng-hide="editing">{{ book.type }}</span>
+				<input type="text" value="{{ book.type }}" data-ng-show="editing">
+			</td>
+			<td>
+				<span data-ng-hide="editing">{{ book.read && "Ja" || "Nej" }}</span>
+				<input type="checkbox" data-ng-show="editing">
+			</td>
+			<td>
+				<span data-ng-hide="editing">{{ book.acquire_date | date:'MMM -yy' }}</span>
+				<input type="date" value="{{ book.acquire_date | date:'yyyy-MM-dd' }}" data-ng-show="editing">
+			</td>
 		</tr>
 	</table>
 </div>

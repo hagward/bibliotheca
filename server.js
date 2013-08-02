@@ -1,7 +1,7 @@
 var express = require('express'),
 	mongoose = require('mongoose');
 
-var port = 20489;
+var port = 7777;
 
 mongoose.connect('mongodb://localhost/devdb');
 
@@ -18,7 +18,7 @@ var bookSchema = mongoose.Schema({
 	read: Boolean,
 	acquire_date: Date
 });
-var Book = mongoose.model('Book', bookSchema, 'books');
+var Book = mongoose.model('Book', bookSchema, 'testbooks');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
@@ -55,19 +55,28 @@ db.once('open', function() {
 	// Creates a new Book and stores it in the database.
 	app.post('/api/add', function(req, res) {
 		var data = req.body;
-		if (data.title && data.author && data.acqDate) {
-			var newBook = new Book({
-				title: data.title,
-				author: data.author,
-				acqDate: new Date(data.acqDate)
-			});
-			newBook.save(function(err) {
-				if (err) console.error('Error: %s', err);
+		var newBook = new Book({
+			author_fname: data.author_fname,
+			author_lname: data.author_lname,
+			title: data.title,
+			series: data.series,
+			genre: data.genre,
+			type: data.type,
+			read: data.read,
+			acquire_date: (data.acquire_date) ? new Date(data.acquire_date) : '',
+		});
+		newBook.save(function(err) {
+			if (err)
+				console.error('Error: %s', err);
+			else
 				console.log('New book added:');
-				console.log(data);
-			});
-			res.json(data);
-		}
+			console.log(data);
+		});
+		res.json(data);
+	});
+
+	app.all('*', function(req, res) {
+		res.sendfile('public/index.html');
 	});
 
 	app.listen(port);

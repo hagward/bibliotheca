@@ -9,7 +9,7 @@ body {
 
 a { color: #E01B5D; }
 table { width: 100%; }
-tr:nth-child(even) { background-color: #CCC; }
+.bookRow:nth-child(even) { background-color: #CCC; }
 
 td {
 	margin: 1px;
@@ -89,4 +89,9 @@ td:last-child { text-align: center; }
 
 .addBookRow:last-child {
 	border: none;
+	padding: 4px 8px;
+}
+
+.editRow {
+	background-color: #E01B5D;
 }

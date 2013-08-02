@@ -7,11 +7,11 @@ angular.module('bibliotheca', []).
 			}).
 			when('/add', {
 				templateUrl: '/partials/add.html',
-				controller: ViewBookCtrl
+				controller: AddCtrl
 			}).
 			when('/book/:id', {
 				templateUrl: '/partials/book.html',
-				controller: ViewBookCtrl
+				controller: BookCtrl
 			}).
 			otherwise({
 				redirectTo: '/'
