@@ -5,6 +5,10 @@ angular.module('bibliotheca', []).
 				templateUrl: '/partials/index.html',
 				controller: IndexCtrl
 			}).
+			when('/add', {
+				templateUrl: '/partials/add.html',
+				controller: ViewBookCtrl
+			}).
 			when('/book/:id', {
 				templateUrl: '/partials/book.html',
 				controller: ViewBookCtrl

@@ -9,15 +9,16 @@ var app = express();
 var db = mongoose.connection;
 
 var bookSchema = mongoose.Schema({
-	author: String,
+	author_fname: String,
+	author_lname: String,
 	title: String,
 	series: String,
 	genre: String,
 	type: String,
 	read: Boolean,
-	acquire_date: String
+	acquire_date: Date
 });
-var Book = mongoose.model('Book', bookSchema, 'bibliotheca');
+var Book = mongoose.model('Book', bookSchema, 'books');
 
 db.on('error', console.error.bind(console, 'connection error:'));
 

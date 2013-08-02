@@ -1,10 +1,13 @@
+::selection {
+	background-color: #CCC;
+}
+
 body {
 	font-family: "Georgia", "Segoe UI", sans-serif;
 	line-height: 1.5em;
 }
 
 a { color: #E01B5D; }
-input { width: 20%; }
 table { width: 100%; }
 tr:nth-child(even) { background-color: #CCC; }
 
@@ -21,13 +24,34 @@ td:last-child { text-align: center; }
 	font-size: 2em;
 }
 
+#menu {
+	margin-top: 20px;
+	text-align: center;
+}
+
+#menu a {
+	display: inline-block;
+	padding: 4px 8px;
+	background-color: #E01B5D;
+	color: #FFF;
+	text-decoration: none;
+}
+
+#menu a:hover {
+	background-color: #CCC;
+}
+
 #search {
 	margin-top: 20px;
 	text-align: center;
 }
 
-#books, #addBook {
+#search input {
 	width: 50%;
+}
+
+#books {
+	width: 75%;
 	margin: 20px auto;
 }
 
@@ -37,6 +61,32 @@ td:last-child { text-align: center; }
 }
 
 #addBook {
-	margin-top: 10px;
+	width: 35%;
+	margin: 20px auto;
+}
+
+#addBook input[type='text'] {
+	width: 99%;
+	padding: 4px 8px;
+	border: none;
+}
+
+/*#addBook div {
+	padding: 4px 8px;
+}*/
+
+#addBookHeader {
 	text-align: center;
+	padding: 8px 12px;
+	font-weight: bold;
+/*	background-color: #E01B5D;
+	color: #FFF;*/
+}
+
+.addBookRow {
+	border-bottom: 1px solid #CCC;
+}
+
+.addBookRow:last-child {
+	border: none;
 }

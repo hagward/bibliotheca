@@ -1,0 +1,16 @@
+<div id="addBook">
+	<div id="addBookHeader">Lägg till bok</div>
+	<div class="addBookRow"><input type="text" data-ng-model="form.title" placeholder="Titel"></div>
+	<div class="addBookRow"><input type="text" data-ng-model="form.author_fname" placeholder="Författare, förnamn"></div>
+	<div class="addBookRow"><input type="text" data-ng-model="form.author_lname" placeholder="Författare, efternamn"></div>
+	<div class="addBookRow"><input type="text" data-ng-model="form.series" placeholder="Bokserie"></div>
+	<div class="addBookRow"><input type="text" data-ng-model="form.genre" placeholder="Genre"></div>
+	<div class="addBookRow"><input type="text" data-ng-model="form.type" placeholder="Bandtyp"></div>
+	<div class="addBookRow">
+		<input type="date" data-ng-model="form.acquire_date" placeholder="Inköpsdatum">
+		Läst:<input type="checkbox" data-ng-model="form.read">
+		<button id="submitBook"
+			data-ng-disabled="!form.title || !form.author_fname || !form.author_lname"
+			data-ng-click="addBook()">Lägg till bok</button>
+	</div>
+</div>

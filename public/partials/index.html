@@ -1,6 +1,6 @@
 <div id="search"><input type="search" data-ng-model="searchQuery" placeholder="Sök"></div>
 <div id="books">
-	<div id="noBooks" data-ng-hide="books.length > 0">Inga böcker funna</div>
+	<div id="noBooks" data-ng-show="books.length == 0">Inga böcker funna</div>
 	<table data-ng-hide="books.length == 0">
 		<tr>
 			<th><a href="#">Författare</a></th>
@@ -12,21 +12,13 @@
 			<th><a href="#">Inköpsdatum</a></th>
 		</tr>
 		<tr data-ng-repeat="book in books | filter:searchQuery">
-			<td>{{ book.author }}</td>
+			<td>{{ book.author_fname }} {{ book.author_lname }}</td>
 			<td><a href="book/{{ book._id }}">{{ book.title }}</a></td>
 			<td>{{ book.series }}</td>
 			<td>{{ book.genre }}</td>
 			<td>{{ book.type }}</td>
 			<td>{{ book.read && "Ja" || "Nej" }}</td>
-			<td>{{ book.acquire_date | date:'yyyy-MM-dd' }}</td>
+			<td>{{ book.acquire_date | date:'MMM -yy' }}</td>
 		</tr>
 	</table>
-</div>
-<div id="addBook">
-	<input type="text" data-ng-model="form.title" placeholder="Titel">
-	<input type="text" data-ng-model="form.author" placeholder="Författare">
-	<input type="date" data-ng-model="form.acqDate" placeholder="Inköpsdatum">
-	<button id="submitBook"
-		data-ng-disabled="!form.title || !form.author || !form.acqDate"
-		data-ng-click="addBook()">Lägg till bok</button>
 </div>
