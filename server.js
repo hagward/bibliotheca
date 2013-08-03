@@ -67,7 +67,7 @@ db.once('open', function() {
 		});
 		newBook.save(function(err) {
 			if (err)
-				console.error('Error: %s', err);
+				console.error('newBook.save() error: %s', err);
 			else
 				console.log('New book added:');
 			console.log(data);
@@ -76,7 +76,8 @@ db.once('open', function() {
 	});
 
 	app.all('*', function(req, res) {
-		res.sendfile('public/index.html');
+		console.log('used the * match');
+		res.sendfile(__dirname + '/public/index.html');
 	});
 
 	app.listen(port);

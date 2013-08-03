@@ -13,10 +13,12 @@ table { width: 100%; }
 
 td {
 	margin: 1px;
-	padding: 0 8px;
+	padding: 4px 8px;
 }
 
-td:last-child { text-align: center; }
+td:first-child {
+	background-color: #FFF;
+}
 
 #header {
 	margin-top: 20px;
@@ -53,6 +55,10 @@ td:last-child { text-align: center; }
 #books {
 	width: 75%;
 	margin: 20px auto;
+}
+
+#books input[type='text'] {
+	width: 98%;
 }
 
 #noBooks {

@@ -1,8 +1,9 @@
 <div id="search"><input type="search" data-ng-model="searchQuery" placeholder="Sök"></div>
-<div id="books" data-ng-click="editing = false">
+<div id="books">
 	<div id="noBooks" data-ng-show="books.length == 0">Inga böcker funna</div>
-	<table data-ng-hide="books.length == 0">
+	<table id="booksTable" data-ng-hide="books.length == 0">
 		<tr>
+			<th></th>
 			<th><a href="#">Författare</a></th>
 			<th><a href="#">Titel</a></th>
 			<th><a href="#">Bokserie</a></th>
@@ -11,7 +12,11 @@
 			<th><a href="#">Läst?</a></th>
 			<th><a href="#">Inköpsdatum</a></th>
 		</tr>
-		<tr data-ng-repeat="book in books | filter:searchQuery" data-ng-dblClick="editing = !editing" data-ng-class="editing && 'editRow' || 'bookRow'">
+		<tr data-ng-repeat="book in books | filter:searchQuery" data-ng-class="editing && 'editRow' || 'bookRow'">
+			<td>
+				<a href="#" data-ng-hide="editing" data-ng-click="editing = true">Ändra</a>
+				<a href="#" data-ng-show="editing" data-ng-click="saveChanges($index); editing = false">Spara</a>
+			</td>
 			<td>
 				<span data-ng-hide="editing">{{ book.author_fname }} {{ book.author_lname }}</span>
 				<input type="text" value="{{ book.author_fname }} {{ book.author_lname }}" data-ng-show="editing">
@@ -32,11 +37,11 @@
 				<span data-ng-hide="editing">{{ book.type }}</span>
 				<input type="text" value="{{ book.type }}" data-ng-show="editing">
 			</td>
-			<td>
+			<td style="text-align: center">
 				<span data-ng-hide="editing">{{ book.read && "Ja" || "Nej" }}</span>
-				<input type="checkbox" data-ng-show="editing">
+				<input type="checkbox" data-ng-show="editing" data-ng-checked="book.read">
 			</td>
-			<td>
+			<td style="text-align: center">
 				<span data-ng-hide="editing">{{ book.acquire_date | date:'MMM -yy' }}</span>
 				<input type="date" value="{{ book.acquire_date | date:'yyyy-MM-dd' }}" data-ng-show="editing">
 			</td>

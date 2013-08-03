@@ -4,12 +4,8 @@ function IndexCtrl($scope, $http) {
 			$scope.books = data.books;
 		});
 
-	var table = document.querySelector('table');
-	$scope.table = angular.element(table);
-
-	$scope.editField = function(row, col, id) {
-		console.log('row: ' + row + ', col: ' + col + ', id: ' + id);
-		console.log($scope.table[row]); //.rows[row].cols[col].innerHTML('hahaha');
+	$scope.saveChanges = function(row) {
+		console.log($('#booksTable tr').eq(row + 1).eq(0));
 	};
 }
 
