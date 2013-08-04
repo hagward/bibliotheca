@@ -53,7 +53,7 @@ db.once('open', function() {
 	});
 
 	// Creates a new Book and stores it in the database.
-	app.post('/api/add', function(req, res) {
+	app.post('/api/book', function(req, res) {
 		var data = req.body;
 		var newBook = new Book({
 			author_fname: data.author_fname,
@@ -63,11 +63,11 @@ db.once('open', function() {
 			genre: data.genre,
 			type: data.type,
 			read: data.read,
-			acquire_date: (data.acquire_date) ? new Date(data.acquire_date) : '',
+			acquire_date: (data.acquire_date) ? new Date(data.acquire_date) : ''
 		});
 		newBook.save(function(err) {
 			if (err)
-				console.error('newBook.save() error: %s', err);
+				console.error('new book error: ', err);
 			else
 				console.log('New book added:');
 			console.log(data);
@@ -75,8 +75,37 @@ db.once('open', function() {
 		res.json(data);
 	});
 
+	app.put('/api/book/:id', function(req, res) {
+		var id = req.params.id;
+		var data = req.body;
+		Book.update({ _id: id }, {
+			author_fname: data.author_fname,
+			author_lname: data.author_lname,
+			title: data.title,
+			series: data.series,
+			genre: data.genre,
+			type: data.type,
+			read: data.read,
+			acquire_date: (data.acquire_date) ? new Date(data.acquire_date) : ''
+		}, function(err) {
+			if (err)
+				console.log('update book error: ', err);
+			else
+				console.log('Book updated: ', id);
+		});
+	});
+
+	app.delete('/api/book/:id', function(req, res) {
+		var id = req.params.id;
+		Book.remove({ _id: id }, function(err) {
+			if (err)
+				console.log('delete book error: ', err);
+			else
+				console.log('Book deleted: ', id);
+		});
+	});
+
 	app.all('*', function(req, res) {
-		console.log('used the * match');
 		res.sendfile(__dirname + '/public/index.html');
 	});
 

@@ -57,6 +57,11 @@ td:first-child {
 	margin: 20px auto;
 }
 
+#books input {
+	background-color: #DDD;
+	border: 1px dashed white;
+}
+
 #books input[type='text'] {
 	width: 98%;
 }
@@ -77,16 +82,10 @@ td:first-child {
 	border: none;
 }
 
-/*#addBook div {
-	padding: 4px 8px;
-}*/
-
 #addBookHeader {
 	text-align: center;
 	padding: 8px 12px;
 	font-weight: bold;
-/*	background-color: #E01B5D;
-	color: #FFF;*/
 }
 
 .addBookRow {
@@ -99,5 +98,5 @@ td:first-child {
 }
 
 .editRow {
-	background-color: #E01B5D;
+	background-color: #E01B5D !important;
 }

@@ -13,13 +13,16 @@
 			<th><a href="#">Inköpsdatum</a></th>
 		</tr>
 		<tr data-ng-repeat="book in books | filter:searchQuery" data-ng-class="editing && 'editRow' || 'bookRow'">
-			<td>
+			<td style="width: 60px">
 				<a href="#" data-ng-hide="editing" data-ng-click="editing = true">Ändra</a>
 				<a href="#" data-ng-show="editing" data-ng-click="saveChanges($index); editing = false">Spara</a>
+				<a href="#" data-ng-show="editing" data-ng-click="deleteBook($index); editing = false">Ta bort</a>
+				<a href="#" data-ng-show="editing" data-ng-click="editing = false">Avbryt</a>
 			</td>
 			<td>
 				<span data-ng-hide="editing">{{ book.author_fname }} {{ book.author_lname }}</span>
-				<input type="text" value="{{ book.author_fname }} {{ book.author_lname }}" data-ng-show="editing">
+				<input type="text" value="{{ book.author_fname }}" data-ng-show="editing">
+				<input type="text" value="{{ book.author_lname }}" data-ng-show="editing">
 			</td>
 			<td>
 				<span data-ng-hide="editing">{{ book.title }}</span>
@@ -33,15 +36,15 @@
 				<span data-ng-hide="editing">{{ book.genre }}</span>
 				<input type="text" value="{{ book.genre }}" data-ng-show="editing">
 			</td>
-			<td>
+			<td style="width: 100px">
 				<span data-ng-hide="editing">{{ book.type }}</span>
 				<input type="text" value="{{ book.type }}" data-ng-show="editing">
 			</td>
-			<td style="text-align: center">
+			<td style="text-align: center; width: 40px">
 				<span data-ng-hide="editing">{{ book.read && "Ja" || "Nej" }}</span>
 				<input type="checkbox" data-ng-show="editing" data-ng-checked="book.read">
 			</td>
-			<td style="text-align: center">
+			<td style="text-align: center; width: 50px">
 				<span data-ng-hide="editing">{{ book.acquire_date | date:'MMM -yy' }}</span>
 				<input type="date" value="{{ book.acquire_date | date:'yyyy-MM-dd' }}" data-ng-show="editing">
 			</td>
